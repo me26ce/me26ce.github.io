@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Binance BTC Fiyatları</title>
-    <style>
+  <title>Web Sayfası</title>
+  <style>
     body {
-      background-color: black;
-      
-}
-    p {
-      font-size:300%;
+      margin: 0;
+      padding: 0;
+     background-color: black;
+    }
+p {
+      font-size:150%;
       font-weight: bold;
       font-style: italic;
       color:white;
@@ -18,11 +18,11 @@
        color: green;
     }
    p {
-       
-       height: 100px;
-       width: 72%;
-       padding-left: 20px;
-       padding-top: 20px;
+       text-align: center;
+       height: 50px;
+       width: 36%;
+       padding-left: 5px;
+       padding-top: 15px;
        border: 3px solid orange;
        border-radius: 10px;
        margin: auto;
@@ -30,7 +30,7 @@
 }
 
    h1 {  
-          font-size: 500%;
+          font-size: 250%;
           text-align: center;
           color: orange;
 }
@@ -38,10 +38,107 @@
          text-align: center;
          color:green;
 }
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: black;
+      color: orange;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      z-index: 9999;
+    }
 
-   </style>
+    .navbar .logo {
+      font-size: 36px;
+      text-align: center;
+      width: 100%;
+      cursor: pointer;
+    }
 
+    .navbar .menu-icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 25px;
+      height: 20px;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+    }
+
+    .navbar .menu-icon .line {
+      width: 100%;
+      height: 3px;
+      background-color: orange;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .navbar .menu-icon.active .line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .navbar .menu-icon.active .line:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .navbar .menu-icon.active .line:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .navbar .menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: black;
+      width: 100%;
+      display: none;
+    }
+
+    .navbar .menu.active {
+      display: block;
+    }
+
+    .navbar .menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .navbar .menu ul li {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .navbar .menu ul li a {
+      color: orange;
+      text-decoration: none;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .navbar .menu ul li a:hover {
+      color: white;
+    }
+
+    .navbar .separator {
+      height: 3px;
+      background-color: orange;
+      margin-top: 5px;
+    }
+  </style>
   <script>
+    function toggleMenu() {
+      const menuIcon = document.querySelector('.menu-icon');
+      const menuList = document.querySelector('.menu');
+      menuIcon.classList.toggle('active');
+      menuList.classList.toggle('active');
+    }
+  </script>
+
+ <script>
     function updatePrices() {
      
  fetch("https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT")
@@ -103,9 +200,30 @@ fetch("https://api.binance.com/api/v3/ticker/price?symbol=USDTTRY")
     setInterval(updatePrices, 5000); // 5 saniyede bir fiyatları güncelle
   </script>
 </head>
-
-
 <body>
+  <div class="navbar">
+    <div class="menu-icon" onclick="toggleMenu()">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <div class="logo" onclick="window.location.href='https://me26ce.github.io'">
+      me26ce.io
+    </div>
+    <div class="menu">
+      <ul>
+        <li><a href="#">Ana Sayfa</a></li>
+        <li><a href="#">Fiyatlar</a></li>
+        <li><a href="#">Emirler</a></li>
+        <li><a href="#">Hakkımda</a></li>
+      </ul>
+      <div class="separator"></div>
+    </div>
+  </div>
+
+  <div style="height: 60px;"></div> <!-- Navigasyon paneliyle sayfa içeriği arasına boşluk eklemek için -->
+
+  <!-- Sayfa içeriği buraya gelecek -->
   <h1>Binance BTC Fiyatları</h1>
   <p>BTC/USDT: <span id="btc-usdt-price"></span></p><br>
   <p>BTC/TRY: <span id="btc-try-price"></span></p><br>
@@ -116,7 +234,5 @@ fetch("https://api.binance.com/api/v3/ticker/price?symbol=USDTTRY")
   <p>PAXG/USDT: <span id="paxg-usdt-price"></span></p><br>
   <p>USDT/TRY: <span id="usdt-try-price"></span></p><br><br><br><br><br><br><br><br>
  <h2>This page is designed by MUTLU ERGÖZ™</h2>
-
 </body>
-  </html>
-  
+</html>
