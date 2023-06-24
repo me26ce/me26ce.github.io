@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Binance BTC Fiyatları</title>
+    <style>
+    body {
+      background-color: black;
+      
+}
+    p {
+      font-size:300%;
+      font-weight: bold;
+      font-style: italic;
+      color:white;
+    }
+   span {
+       color: green;
+    }
+   p {
+       
+       height: 100px;
+       width: 72%;
+       padding-left: 20px;
+       padding-top: 20px;
+       border: 3px solid orange;
+       border-radius: 10px;
+       margin: auto;
+       
+}
+
+   h1 {  
+          font-size: 500%;
+          text-align: center;
+          color: orange;
+}
+   h2 {
+         text-align: center;
+         color:green;
+}
+
+   </style>
+
+  <script>
+    function updatePrices() {
+     
+ fetch("https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT")
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("btc-usdt-price").textContent = data.price;
+        });
+
+ fetch("https://api.binance.com/api/v3/ticker/price?symbol=BTCTRY")
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("btc-try-price").textContent = data.price;
+        });
+
+
+fetch("https://api.binance.com/api/v3/ticker/price?symbol=FTMUSDT")
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("ftm-usdt-price").textContent = data.price;
+        });
+
+
+fetch("https://api.binance.com/api/v3/ticker/price?symbol=FTMTRY")
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("ftm-try-price").textContent = data.price;
+        });
+
+
+fetch("https://api.binance.com/api/v3/ticker/price?symbol=APEUSDT")
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("ape-usdt-price").textContent = data.price;
+        });
+
+
+fetch("https://api.binance.com/api/v3/ticker/price?symbol=APETRY")
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("ape-try-price").textContent = data.price;
+        });
+
+
+fetch("https://api.binance.com/api/v3/ticker/price?symbol=PAXGUSDT")
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("paxg-usdt-price").textContent = data.price;
+        });
+
+fetch("https://api.binance.com/api/v3/ticker/price?symbol=USDTTRY")
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("usdt-try-price").textContent = data.price;
+        });
+
+    }
+
+    document.addEventListener("DOMContentLoaded", updatePrices);
+    setInterval(updatePrices, 5000); // 5 saniyede bir fiyatları güncelle
+  </script>
+</head>
+
+
+<body>
+  <h1>Binance BTC Fiyatları</h1>
+  <p>BTC/USDT: <span id="btc-usdt-price"></span></p><br>
+  <p>BTC/TRY: <span id="btc-try-price"></span></p><br>
+  <p>FTM/USDT: <span id="ftm-usdt-price"></span></p><br>
+  <p>FTM/TRY: <span id="ftm-try-price"></span></p><br>
+  <p>APE/USDT: <span id="ape-usdt-price"></span></p><br>
+  <p>APE/TRY: <span id="ape-try-price"></span></p><br>
+  <p>PAXG/USDT: <span id="paxg-usdt-price"></span></p><br>
+  <p>USDT/TRY: <span id="usdt-try-price"></span></p><br><br><br><br><br><br><br><br>
+ <h2>This page is designed by MUTLU ERGÖZ™</h2>
+
+</body>
+  </html>
+  
